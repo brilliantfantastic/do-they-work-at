@@ -8,9 +8,11 @@ describe 'app' do
   end
 
   it 'redirects to a default company' do
-    app.default_company = :bf
+    set :default_company, :bf
     get '/'
     last_response.should be_redirect
+    follow_redirect!
+    last_request.url.should == 'http://example.org/bf'
   end
 end
 

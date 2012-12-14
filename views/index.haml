@@ -1,7 +1,7 @@
 %form{ :action => "/", :method => :post }
   %input{ :type => :hidden, :name => 'company', :value => @company }
   Does 
-  %input#name{ :type => :text }
+  %input{ :type => :text, :name => 'name' }
   work for
   = succeed '?' do
     = @company

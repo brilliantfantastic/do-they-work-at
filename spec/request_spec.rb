@@ -18,9 +18,13 @@ describe 'app' do
   end
 
   describe 'post /' do
-    it 'provides an answer' do
-      post '/', { :company => 'github', :name => 'Zack Holman' }
-      last_response.should be_ok
+    context 'with a Github username' do
+      before { FakeGithub.stub_org_members('github', ['holman']) }
+      it 'provides an answer' do
+        post '/', { :company => 'github', :name => 'holman' }
+        last_response.should be_ok
+        JSON.parse(last_response.body).should be_true
+      end
     end
   end
 end

@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'sinatra/json'
+require_relative 'lib/employment'
 
 set :default_company, :github
 
@@ -12,5 +14,5 @@ get '/:company' do
 end
 
 post '/' do
-  params[:company]
+  json :answer => Employment.new(params[:name]).employed_at?(params[:company])
 end

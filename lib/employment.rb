@@ -9,7 +9,7 @@ class Employment
   def employed_at?(company)
     members = Github.new.orgs.members.list company
     members.each do |member|
-      if @user == member['login'] || @user == member['name']
+      if @user.casecmp(member['login']) == 0
         return true
       end
     end

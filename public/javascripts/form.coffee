@@ -1,19 +1,19 @@
-class Company
+class Form
   constructor: ->
-    @bindFormSubmission()
+    @bindSubmission()
 
-  bindFormSubmission: ->
+  bindSubmission: ->
     self = @
     $('form').submit ->
       $.post(
         $(this).attr('action')
         $(this).serialize()
-        self.processFormSubmission
+        self.processSubmission
       )
       return false
 
-  processFormSubmission: (data, textStatus, xhr)->
+  processSubmission: (data, textStatus, xhr)->
     alert data.answer
 
 $ ->
-  window.company = new Company()
+  window.form = new Form()
